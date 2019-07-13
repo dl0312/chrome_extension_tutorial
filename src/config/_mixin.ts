@@ -6,37 +6,6 @@ const sizes = {
     phone: 576
   };
   
-  export const PLTags = [
-    "html",
-    "css",
-    "js",
-    "react",
-    "python",
-    "c++",
-    "swift",
-    "c",
-    "php",
-    "java",
-    "nodejs",
-    "c#",
-    "pascal",
-    "django",
-    "spring",
-    "expressjs",
-    "flask",
-    "haskel",
-    "prolog",
-    "keras",
-    "tenserflow",
-    "kotlin",
-    "scala",
-    "play",
-    "rubyonrails",
-    "jquery",
-    "vue",
-    "angular"
-  ];
-  
   export const baseURL = "http://localhost:3000";
   
   export const fontSize = {
@@ -44,8 +13,6 @@ const sizes = {
     normalFontSize: "12px",
     largeFontSize: "15px"
   };
-  
-  export const websiteTitle = "👀 Movisualization";
   
   export const headerHeight = "6rem";
   
