@@ -1,6 +1,6 @@
 // sizes for media queries
 const sizes = {
-    giant: 1080,
+    giant: 1720,
     desktop: 922,
     tablet: 768,
     phone: 576
@@ -64,6 +64,7 @@ const sizes = {
   
   export const media: any = {
     custom: customMediaQuery,
+    giant: customMediaQuery(sizes.giant),
     desktop: customMediaQuery(sizes.desktop),
     tablet: customMediaQuery(sizes.tablet),
     phone: customMediaQuery(sizes.phone)

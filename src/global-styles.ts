@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
   }
   body{
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Myeongjo', serif;
     font-size: ${fontSize.normalFontSize};
     overflow-x: hidden;
     background-color: ${color.bgColor};
