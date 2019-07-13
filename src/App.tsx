@@ -1,53 +1,79 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import Tabletop from "tabletop";
+import { GlobalStyle } from "./global-styles";
+
+type Movie = {title: string, line: string, infoUrl: string, imageUrl: string }
 
 // This is example of styled-components
-const Container = styled.main`
+const Container = styled.main<{url: string}>`
   min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url(${({url}) => url});
 `;
 
-// This is example of styled-components with TypeScript or you can make interface of props
-const Header = styled("header")<{ toggleState: boolean }>`
-  background: linear-gradient(#eee, #333);
-  -webkit-background-clip: text;
-  color: ${({ toggleState }) => (toggleState ? "grey" : "black")}
-  transition: 0.5s ease-in-out;
-  font-size: 3rem;
-  font-weight: 900;
-  text-transform: uppercase;
-`;
+const Line = styled.span`
+`
 
-// This is example of react-hooks with TypeScript
-function useToggle(defaultValue: boolean) {
-  const [toggleState, setToggleState] = useState(defaultValue);
+const MovieTitle = styled.span`
+`
 
-  function onMouseOver() {
-    setToggleState(true);
-  }
+interface Props {
 
-  function onMouseOut() {
-    setToggleState(false);
-  }
-
-  return { toggleState, onMouseOver, onMouseOut };
 }
 
-function App() {
-  const toggle = useToggle(false);
-  return (
-    <Container className="App">
-      <Header {...toggle} className="App-header">
-        react, typescript, styled-components
-        <br />
-        boilerplate
-      </Header>
-    </Container>
-  );
+interface State {
+  load: boolean,
+  title: string,
+  line: string,
+  infoUrl: string,
+  imageUrl: string;
+}
+
+class App extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      load: false,
+      title: "",
+      line: "",
+      infoUrl: "",
+      imageUrl: "",
+    }
+  }
+
+  componentDidMount = async () => {
+
+    Tabletop.init({
+      key: '1sRaboEbc6Gw2T7cGglZkv0iTNkfKGNXmwJ4PB1r_jfk',
+      callback: (data: Movie[]) => {
+        const {title, line, infoUrl, imageUrl } = data[0]
+        this.setState({title, line, infoUrl, imageUrl, load: true })
+      },
+      simpleSheet: true
+    })
+  }
+  render() {
+    const { title, line, imageUrl, load } = this.state;
+    console.log(this.state);
+    return (
+      <>
+      <GlobalStyle />
+      {load && <Container url={imageUrl} className="App">
+        <MovieTitle>
+        {title}
+        </MovieTitle>
+         <Line>
+           {line}
+         </Line>
+      </Container>}
+      </>
+    );
+  }
 }
 
 export default App;
