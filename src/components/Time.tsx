@@ -5,7 +5,7 @@ const weekdays = ['일요일', '월요일', '화요일', '수요일', '목요일
 
 const Container = styled.div`
 display: flex;
-
+margin-top: 3rem;
 flex-direction: column;
 align-items: center;
 justify-content: center;
@@ -41,7 +41,7 @@ const Time: React.SFC<Props> = ({ minutes, hours, month, day, dayOfWeek }) => {
                 {hours} <Colon>:</Colon> {minutes}
             </Clock>
             <DateContainer>
-                {month}. {day}. {weekdays[dayOfWeek]}
+                {month}월 {day}일 {weekdays[dayOfWeek]}
             </DateContainer>
         </Container>
     )

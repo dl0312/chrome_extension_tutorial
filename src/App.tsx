@@ -14,24 +14,46 @@ const Container = styled.main<{ url: string }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 4rem 0;
   align-items: center;
-  background-image: linear-gradient(
+  background-image: 
+    linear-gradient(
       to bottom,
+      rgba(0, 0, 0, 0.5),
       transparent,
       transparent,
-      transparent,
-      rgba(20, 24, 28, 0.5),
-      rgba(0, 0, 0, 1)
-    ),url(${({ url }) => url});
+      transparent
+    ), url(${({ url }) => url});
   background-position: center, center;
   background-size: 100% auto;
+  background-repeat: no-repeat;
   ${media.giant}{
     background-size: auto 100%;
   }
 `;
 
-const MovieContainer = styled.div``
+const MovieContainer = styled.div`
+  width: 100%;
+  padding: 6rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: background-size 1s ease-in-out;
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 1)
+    );
+    background-size: auto 70%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  &:hover {
+    background-size: auto 100%;
+  }
+`
 
 const LineContainer = styled.div`
 display: flex;
@@ -122,7 +144,7 @@ class App extends React.Component<Props, State> {
         <GlobalStyle />
         {load && <Container url={imageUrl} className="App">
           <Time minutes={minutes} hours={hours} month={month} day={day} dayOfWeek={dayOfWeek} />
-          <MovieContainer>
+          <MovieContainer >
             <LineContainer><QuoteIcon style={{ marginRight: '1.5rem' }} className="fas fa-quote-left"></QuoteIcon><Line dangerouslySetInnerHTML={{ __html: `${line}` }} /><QuoteIcon style={{ marginLeft: '1.5rem' }} className="fas fa-quote-right"></QuoteIcon></LineContainer>
             <MovieTitle>
               {`<${title}>`}
