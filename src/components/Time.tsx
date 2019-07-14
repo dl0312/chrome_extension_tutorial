@@ -38,7 +38,7 @@ const Time: React.SFC<Props> = ({ minutes, hours, month, day, dayOfWeek }) => {
     return (
         <Container>
             <Clock>
-                {hours} <Colon>:</Colon> {minutes}
+                {hours > 12 ? `오후 ${hours - 12}` : `오전 ${hours}`} <Colon>:</Colon> {minutes}
             </Clock>
             <DateContainer>
                 {month}월 {day}일 {weekdays[dayOfWeek]}

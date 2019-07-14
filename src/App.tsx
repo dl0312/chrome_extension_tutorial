@@ -184,7 +184,6 @@ class App extends React.Component<Props, State> {
             <BaseButton icon="fas fa-pen-nib" title="명대사 제보" link="https://docs.google.com/spreadsheets/d/1MrolfH-uqBWZwLNStfU70xg5H2ur3zLO285jBH3mZd0/edit#gid=0" />
             <BaseButton icon="fas fa-comment-dots" title="피드백" link="mailto:leegun2003@gmail.com?subject=제작자에게&body=보내시는 분: 건의 내용: " />
             <BaseButton icon="fas fa-user" title="만든이" link="https://github.com/dl0312" />
-
           </ButtonContainer>
         </Container>}
       </>
