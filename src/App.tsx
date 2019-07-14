@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { GlobalStyle } from "./global-styles";
 import { media } from "./config/_mixin";
 import Time from './components/Time';
-// import { Movie } from './shared-types'
+import Logo from "./static/asset/logo.png"
 import { getMovies } from './api';
 
 
@@ -16,6 +16,11 @@ const Container = styled.main<{ url: string }>`
   justify-content: space-between;
   align-items: center;
   background-image: 
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
     linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.5),
@@ -55,22 +60,36 @@ const MovieContainer = styled.div`
   }
 `
 
-const LineContainer = styled.div`
-display: flex;
-align-items: center;
-`
 
 const QuoteIcon = styled.i`
 font-size: 1.5rem;
+margin: 1.5rem;
+transition: margin 0.5s ease-in-out;
 `
 
 const Line = styled.div`
   font-size: 2rem;
   font-weight: 100;
   line-height: 3rem;
+  transition: font-size 0.5s ease-in-out, line-height 0.5s ease-in-out;
   word-break: keep-all;
   text-align: center;
 `
+
+const LineContainer = styled.div`
+display: flex;
+align-items: center;
+&:hover{
+  ${QuoteIcon}{
+    margin: 3rem;
+  }
+  ${Line} {
+    font-size: 2.2rem;
+    line-height: 3.3rem;
+  }
+}
+`
+
 
 const MovieTitle = styled.div`
   font-size: 1.5rem;
@@ -78,6 +97,17 @@ const MovieTitle = styled.div`
   word-break: keep-all;
   text-align: center;
   color: rgba(255,255,255,0.7);
+`
+
+const Signature = styled.img`
+width: 4rem;
+`;
+
+const SignatureLink = styled.a`
+cursor: pointer;
+position: absolute;
+right: 2rem;
+bottom: 2rem;
 `
 
 interface Props {
@@ -145,10 +175,13 @@ class App extends React.Component<Props, State> {
         {load && <Container url={imageUrl} className="App">
           <Time minutes={minutes} hours={hours} month={month} day={day} dayOfWeek={dayOfWeek} />
           <MovieContainer >
-            <LineContainer><QuoteIcon style={{ marginRight: '1.5rem' }} className="fas fa-quote-left"></QuoteIcon><Line dangerouslySetInnerHTML={{ __html: `${line}` }} /><QuoteIcon style={{ marginLeft: '1.5rem' }} className="fas fa-quote-right"></QuoteIcon></LineContainer>
+            <LineContainer><QuoteIcon className="fas fa-quote-left"></QuoteIcon><Line dangerouslySetInnerHTML={{ __html: `${line}` }} /><QuoteIcon className="fas fa-quote-right"></QuoteIcon></LineContainer>
             <MovieTitle>
               {`<${title}>`}
             </MovieTitle></MovieContainer>
+          <SignatureLink target="_blank" href="https://github.com/dl0312">
+            <Signature src={Logo}
+            /></SignatureLink>
         </Container>}
       </>
     );
