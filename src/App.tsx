@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { GlobalStyle } from "./global-styles";
 import { media } from "./config/_mixin";
 import Time from './components/Time';
-import Logo from "./static/asset/logo.png"
+
 import { getMovies } from './api';
+import BaseButton from './components/BaseButton';
 
 
 // This is example of styled-components
@@ -68,7 +69,7 @@ transition: margin 0.5s ease-in-out;
 `
 
 const Line = styled.div`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 100;
   line-height: 3rem;
   transition: font-size 0.5s ease-in-out, line-height 0.5s ease-in-out;
@@ -84,14 +85,14 @@ align-items: center;
     margin: 3rem;
   }
   ${Line} {
-    font-size: 2.2rem;
+    font-size: 2rem;
     line-height: 3.3rem;
   }
 }
 `
 
 
-const MovieTitle = styled.div`
+const MovieTitle = styled.a`
   font-size: 1.5rem;
   margin: 2rem 0;
   word-break: keep-all;
@@ -99,15 +100,15 @@ const MovieTitle = styled.div`
   color: rgba(255,255,255,0.7);
 `
 
-const Signature = styled.img`
-width: 4rem;
-`;
 
-const SignatureLink = styled.a`
+const ButtonContainer = styled.div`
 cursor: pointer;
 position: absolute;
-right: 2rem;
-bottom: 2rem;
+left: 2rem;
+top: 2rem;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
 `
 
 interface Props {
@@ -168,7 +169,7 @@ class App extends React.Component<Props, State> {
     setInterval(this.getTime, 1000);
   }
   render() {
-    const { title, line, imageUrl, load, minutes, hours, month, day, dayOfWeek } = this.state;
+    const { title, line, infoUrl, imageUrl, load, minutes, hours, month, day, dayOfWeek } = this.state;
     return (
       <>
         <GlobalStyle />
@@ -176,12 +177,15 @@ class App extends React.Component<Props, State> {
           <Time minutes={minutes} hours={hours} month={month} day={day} dayOfWeek={dayOfWeek} />
           <MovieContainer >
             <LineContainer><QuoteIcon className="fas fa-quote-left"></QuoteIcon><Line dangerouslySetInnerHTML={{ __html: `${line}` }} /><QuoteIcon className="fas fa-quote-right"></QuoteIcon></LineContainer>
-            <MovieTitle>
+            <MovieTitle href={infoUrl} target="_blank">
               {`<${title}>`}
             </MovieTitle></MovieContainer>
-          <SignatureLink target="_blank" href="https://github.com/dl0312">
-            <Signature src={Logo}
-            /></SignatureLink>
+          <ButtonContainer>
+            <BaseButton icon="fas fa-pen-nib" title="명대사 제보" link="https://docs.google.com/spreadsheets/d/1MrolfH-uqBWZwLNStfU70xg5H2ur3zLO285jBH3mZd0/edit#gid=0" />
+            <BaseButton icon="fas fa-comment-dots" title="피드백" link="mailto:leegun2003@gmail.com?subject=제작자에게&body=보내시는 분: 건의 내용: " />
+            <BaseButton icon="fas fa-user" title="만든이" link="https://github.com/dl0312" />
+
+          </ButtonContainer>
         </Container>}
       </>
     );

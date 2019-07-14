@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${color.fontColor};
     text-decoration: none !important;
     &:hover{
-        color: ${color.mainColor};
+        color: ${color.fontColor};
     }
   }
   strong{
